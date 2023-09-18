@@ -7,17 +7,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class Register extends AppCompatActivity
 {
     Button btn_v_r_back;
+    Button btn_v_r_register;
     Intent int_j_welcomeIntent;
 
+    EditText et_j_r_fName;
+    EditText et_j_r_lName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btn_v_r_back = findViewById(R.id.btn_v_r_back);
+        btn_v_r_register = findViewById(R.id.btn_v_r_register);
+        et_j_r_fName = findViewById(R.id.et_v_r_fName);
+        et_j_r_lName = findViewById(R.id.et_v_r_lName);
         int_j_welcomeIntent = new Intent(Register.this, MainActivity.class);
 
         //code to get info pass from mainactivity.java
@@ -32,6 +39,7 @@ public class Register extends AppCompatActivity
 
 
         backButtonEventHandler();
+        registerButtonEventHandler();
     }
 
     public void backButtonEventHandler()
@@ -39,6 +47,26 @@ public class Register extends AppCompatActivity
         btn_v_r_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(int_j_welcomeIntent);
+
+            }
+        });
+    }
+
+    public void registerButtonEventHandler()
+    {
+        btn_v_r_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fullName;
+
+                String fName = et_j_r_fName.getText().toString();
+                String lName = et_j_r_lName.getText().toString();
+
+                fullName = fName + " " + lName;
+
+                //Passing information to MainActivity
+                int_j_welcomeIntent.putExtra("Name", fullName);
                 startActivity(int_j_welcomeIntent);
             }
         });
