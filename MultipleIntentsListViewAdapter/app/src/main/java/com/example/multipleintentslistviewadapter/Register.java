@@ -12,11 +12,11 @@ import android.widget.EditText;
 public class Register extends AppCompatActivity
 {
     Button btn_v_r_back;
-    Button btn_v_r_register;
     Intent int_j_welcomeIntent;
-
+    Button btn_v_r_register;
     EditText et_j_r_fName;
     EditText et_j_r_lName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,6 @@ public class Register extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(int_j_welcomeIntent);
-
             }
         });
     }
@@ -64,9 +63,11 @@ public class Register extends AppCompatActivity
                 String lName = et_j_r_lName.getText().toString();
 
                 fullName = fName + " " + lName;
-
                 //Passing information to MainActivity
-                int_j_welcomeIntent.putExtra("Name", fullName);
+                //First Value: name of info to pass
+                //Second Value: What you want to pass.
+                int_j_welcomeIntent.putExtra("Name",fullName);
+                //load the intent
                 startActivity(int_j_welcomeIntent);
             }
         });
